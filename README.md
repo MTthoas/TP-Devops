@@ -4,31 +4,30 @@
 minikube
 
 ### Services
-> /api : GO - Fiber
-> /frontend : React
-> /postgres : PostgreSQL
+- /api : GO - Fiber
+- /frontend : React
+- /postgres : PostgreSQL
 
 ## Contribution
 matthias pecquery 4IBC
 
 ## Step
 
-- minikupe start
-- kubectl create namespace frontend
-- kubectl create namespace backend
-- kubectl create namespace monitoring
-- kubectl create namespace postgresql
+```bash minikupe start```
+```bash kubectl create namespace frontend```
+```bash kubectl create namespace backend```
+```bash kubectl create namespace monitoring```
+```bash kubectl create namespace postgresql```
 
-- docker build -t mtthoas/app-frontend ./frontend
-- docker build -t mtthoas/app-backend ./api      
-- docker build -t mtthoas/database ./api      
+```bash docker build -t mtthoas/app-frontend ./frontend```
+```bash docker build -t mtthoas/app-backend ./api``` 
+```bash docker build -t mtthoas/database ./api```  
 
-- kubectl run frontend --image=mtthoas/app-frontend --image-pull-policy=Never
-- kubectl run backend --image=mtthoas/app-backend --image-pull-policy=Never
-- kubectl run database --image=mtthoas/database --image-pull-policy=Never
+```bash kubectl run frontend --image=mtthoas/app-frontend --image-pull-policy=Never```
+```bash kubectl run backend --image=mtthoas/app-backend --image-pull-policy=Never```
+```bash kubectl run database --image=mtthoas/database --image-pull-policy=Never```
 
-- kubectl port-forward prometheus-deployment-5549c769cc-j5h9d 8080:9090 -n monitoring
-
+```bash kubectl port-forward prometheus-deployment-5549c769cc-j5h9d 8080:9090 -n monitoring```
 
 Minikube Dashboard
 <img width="1282" alt="Capture d’écran 2023-12-21 à 15 32 35" src="https://github.com/MTthoas/TP-Devops/assets/92540288/b80f27c6-f9fa-464c-9e70-f0c39ee86574">
