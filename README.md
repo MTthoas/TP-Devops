@@ -4,9 +4,9 @@
 minikube
 
 ### Services
-/api : GO - Fiber
-/frontend : React
-/postgres : PostgreSQL
+> /api : GO - Fiber
+> /frontend : React
+> /postgres : PostgreSQL
 
 ## Contribution
 matthias pecquery 4IBC
