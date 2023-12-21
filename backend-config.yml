@@ -1,0 +1,8 @@
+# backend-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: backend
+data:
+  database_url: postgres://myuser:mypassword@postgres:5432/mydatabase

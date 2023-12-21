@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and Push Docker images
+      run: |
+        docker build -t mtthoas/app-backend:latest ./api
+        docker build -t mtthoas/app-frontend:latest ./frontend
+        docker push mtthoas/app-backend:latest
+        docker push mtthoas/app-frontend:latest
+
+    - name: Run Unit Tests
+      run: |
+        cd api
+        # run your unit tests for API
+        cd ../frontend
+        # run your unit tests for Frontend
+
+      # SonarQube analysis
+    - name: SonarQube Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
